@@ -1,8 +1,9 @@
-#include "raylib.h"
 #include <cmath>
-#include <iostream>
+#include "raylib.h"
+
 #include "player.h"
 
+//Temp
 Rectangle enemy;
 int e_rotation;
 int eDeltaX;
@@ -20,11 +21,12 @@ int main(void)
 
   Player p = *new Player(5, 5, 100);
 
-  p.player_rect.x = screenWidth/2;
-  p.player_rect.y = screenHeight/2;
+  p.player_rect.x = static_cast<float>(screenWidth)/2;
+  p.player_rect.y = static_cast<float>(screenHeight)/2;
   p.player_rect.height = 50;
   p.player_rect.width = 50;
 
+  //Temp
   enemy.height = 50;
   enemy.width = 50;
   enemy.x = 1000;
@@ -34,6 +36,7 @@ int main(void)
     if(IsKeyPressed(KEY_F)) p.set_player_health(p.get_player_health()-5);
     if(IsKeyPressed(KEY_E)) p.set_player_exp(p.get_player_exp()+50);
 
+    //Temp
     p.set_player_level(p.get_player_exp()*0.01);
 
     eDeltaX = enemy.x - p.player_rect.x;
@@ -41,9 +44,12 @@ int main(void)
 
     e_rotation = (std::atan2(-eDeltaX, eDeltaY) * 180.000) / 3.141592;
 
+    if(enemy.x < p.player_rect.x) enemy.x += 3;
+    if(enemy.x > p.player_rect.x) enemy.x -= 3;
+    if(enemy.y < p.player_rect.y) enemy.y += 3;
+    if(enemy.y > p.player_rect.y) enemy.y -= 3;
+
     if(p.alive) {
-      std::cout<<p.get_player_speed()<<std::endl;
-      std::cout<<p.get_player_health()<<std::endl;
       p.player_movement();
       p.player_rotation();
       p.player_shoot();
