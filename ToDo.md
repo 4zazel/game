@@ -20,6 +20,7 @@ After getting enough points get to pick an upgrade (speed, dmg, health)
     - [ ] Add enemies
     - [ ] Make them spawn in waves
   - [ ] upgrades
+  - [ ] Add a shop in between waves
   - [ ] health
   - [ ] win condition
 
