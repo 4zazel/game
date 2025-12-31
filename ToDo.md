@@ -11,8 +11,11 @@ Have some kind of stats
 After getting enough points get to pick an upgrade (speed, dmg, health)
 
 #### Urgent
-  - [x] game idea xddd
+  - [x] game idea
   - [x] movement
+  - [ ] separate enemy class to separate files
+  - [x] Fix movement
+  - [x] Fix adding exp / removing health
 
 # Need to do
   - [ ] shooting
@@ -21,7 +24,7 @@ After getting enough points get to pick an upgrade (speed, dmg, health)
     - [ ] Make them spawn in waves
   - [ ] upgrades
   - [ ] Add a shop in between waves
-  - [ ] health
+  - [x] health
   - [ ] win condition
 
 ###### Nice to have
