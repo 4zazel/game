@@ -36,9 +36,10 @@ int main(void)
     if(IsKeyPressed(KEY_F)) p.set_player_health(p.get_player_health()-5);
     if(IsKeyPressed(KEY_E)) p.set_player_exp(p.get_player_exp()+50);
 
-    //Temp
+    //Calculate player level
     p.set_player_level(p.get_player_exp()*0.01);
 
+    //Tem
     eDeltaX = enemy.x - p.player_rect.x;
     eDeltaY = enemy.y - p.player_rect.y;
 
@@ -70,7 +71,8 @@ int main(void)
       
       //Draw exp counter
       DrawText(TextFormat("Level: %i", p.get_player_level()), 10, 40, 20, WHITE);
-
+      
+      //Check if the player died
       if(p.get_player_health() <= 0) {
         DrawText("You died", screenWidth/2, screenHeight/2, 24, WHITE);
         p.alive = false;
