@@ -14,13 +14,13 @@ class Enemy{
     Rectangle enemy_rect;
     int deltaX{ 0 };
     int deltaY{ 0 };
-    int p_rotation{ 0 };
+    int e_rotation{ 0 };
     bool alive{ true };
 
     Enemy();
     Enemy(int speed, int damage, int health);
 
-    void enemy_movement();
+    void enemy_movement(Player player);
     void enemy_rotation(Player player);
     void enemy_shoot();
 

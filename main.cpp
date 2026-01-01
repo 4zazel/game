@@ -1,13 +1,7 @@
-#include <cmath>
 #include "raylib.h"
 
 #include "player.h"
-
-//Temp
-Rectangle enemy;
-int e_rotation;
-int eDeltaX;
-int eDeltaY;
+#include "enemy.h"
 
 int main(void)
 {
@@ -26,11 +20,12 @@ int main(void)
   p.player_rect.height = 50;
   p.player_rect.width = 50;
 
-  //Temp
-  enemy.height = 50;
-  enemy.width = 50;
-  enemy.x = 1000;
-  enemy.y = 700;
+  Enemy e = *new Enemy(3, 5, 100);
+
+  e.enemy_rect.x = 1200.0f;
+  e.enemy_rect.y = 540.0f;
+  e.enemy_rect.height = 50;
+  e.enemy_rect.width = 50;
 
   while(!WindowShouldClose()) {
     if(IsKeyPressed(KEY_F)) p.set_player_health(p.get_player_health()-5);
@@ -39,16 +34,8 @@ int main(void)
     //Calculate player level
     p.set_player_level(p.get_player_exp()*0.01);
 
-    //Tem
-    eDeltaX = enemy.x - p.player_rect.x;
-    eDeltaY = enemy.y - p.player_rect.y;
-
-    e_rotation = (std::atan2(-eDeltaX, eDeltaY) * 180.000) / 3.141592;
-
-    if(enemy.x < p.player_rect.x) enemy.x += 3;
-    if(enemy.x > p.player_rect.x) enemy.x -= 3;
-    if(enemy.y < p.player_rect.y) enemy.y += 3;
-    if(enemy.y > p.player_rect.y) enemy.y -= 3;
+    e.enemy_movement(p);
+    e.enemy_rotation(p);
 
     if(p.alive) {
       p.player_movement();
@@ -63,7 +50,7 @@ int main(void)
       DrawRectanglePro(p.player_rect, {p.player_rect.height/2, p.player_rect.width/2}, p.p_rotation, p.player_color);
 
       //Draw enemy
-      DrawRectanglePro(enemy, {enemy.height/2, enemy.width/2}, e_rotation, GREEN);
+      DrawRectanglePro(e.enemy_rect, {e.enemy_rect.height/2, e.enemy_rect.width/2}, e.e_rotation, e.enemy_color);
 
       //Draw Healthbar
       DrawRectangle(10, 10, 100, 10, GRAY);

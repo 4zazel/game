@@ -16,12 +16,12 @@ Enemy::Enemy(int speed, int damage, int health)
   std::cout<<"Enemy created\n";
 }
 
-void Enemy::enemy_movement()
+void Enemy::enemy_movement(Player player)
 {
-    if(IsKeyDown(KEY_D)) this->enemy_rect.x+=enemy_speed;
-    if(IsKeyDown(KEY_A)) this->enemy_rect.x-=enemy_speed;
-    if(IsKeyDown(KEY_W)) this->enemy_rect.y-=enemy_speed;
-    if(IsKeyDown(KEY_S)) this->enemy_rect.y+=enemy_speed;
+  if(this->enemy_rect.x < player.player_rect.x) this->enemy_rect.x += enemy_speed;
+  if(this->enemy_rect.x > player.player_rect.x) this->enemy_rect.x -= enemy_speed;
+  if(this->enemy_rect.y < player.player_rect.y) this->enemy_rect.y += enemy_speed;
+  if(this->enemy_rect.y > player.player_rect.y) this->enemy_rect.y -= enemy_speed;
 }
 
 void Enemy::enemy_rotation(Player player)
@@ -29,13 +29,11 @@ void Enemy::enemy_rotation(Player player)
     this->deltaX = player.player_rect.x - this->enemy_rect.x; 
     this->deltaY = player.player_rect.y - this->enemy_rect.y; 
 
-    p_rotation = (std::atan2(-deltaX, deltaY) * 180.000) / 3.141592;
+    e_rotation = (std::atan2(-deltaX, deltaY) * 180.000) / 3.141592;
 }
 
 void Enemy::enemy_shoot()
 {
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) this->enemy_color = WHITE;
-    if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) this->enemy_color = RED;
 }
 
 int Enemy::get_enemy_speed(){ return this->enemy_speed;}
