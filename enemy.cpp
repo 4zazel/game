@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include "player.h"
+#include "raylib.h"
 #include <cmath>
 #include <iostream>
 
@@ -16,8 +17,7 @@ Enemy::Enemy(int speed, int damage, int health)
   std::cout<<"Enemy created\n";
 }
 
-void Enemy::enemy_movement(Player player)
-{
+void Enemy::enemy_movement(Player player) {
   float dx = player.player_rect.x - this->enemy_rect.x;
   float dy = player.player_rect.y - this->enemy_rect.y;
 
@@ -32,8 +32,7 @@ void Enemy::enemy_movement(Player player)
   this->enemy_rect.y += dy * enemy_speed;
 }
 
-void Enemy::enemy_rotation(Player player)
-{
+void Enemy::enemy_rotation(Player player) {
     this->deltaX = player.player_rect.x - this->enemy_rect.x; 
     this->deltaY = player.player_rect.y - this->enemy_rect.y; 
 

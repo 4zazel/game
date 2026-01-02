@@ -11,17 +11,19 @@ Have some kind of stats
 After getting enough points get to pick an upgrade (speed, dmg, health)
 
 #### Urgent
+  - [x] Dynamic creation of enemy objects
   - [x] game idea
   - [x] movement
-  - [ ] separate enemy class to separate files
+  - [x] separate enemy class to separate files
   - [x] Fix movement
   - [x] Fix adding exp / removing health
+  - [ ] shooting
 
 # Need to do
-  - [ ] shooting
-  - [ ] enemies
-    - [ ] Add enemies
-    - [ ] Make them spawn in waves
+  - [ ] Add collisions to window borders
+  - [x] enemies
+    - [x] Add enemies
+    - [x] Make them spawn in waves
   - [ ] upgrades
   - [ ] Add a shop in between waves
   - [x] health

@@ -12,7 +12,6 @@ class Enemy{
   public:
     Color enemy_color{ GREEN };
     Rectangle enemy_rect;
-    Rectangle collision_rect;
     int deltaX{ 0 };
     int deltaY{ 0 };
     int e_rotation{ 0 };

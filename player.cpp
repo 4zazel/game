@@ -1,7 +1,9 @@
 #include "player.h"
 #include "raylib.h"
+#include "raymath.h"
 #include <cmath>
 #include <iostream>
+#include "bullet.h"
 
 Player::Player(){ std::cout<<"Player created\n";}
 
@@ -31,10 +33,22 @@ void Player::player_rotation()
     p_rotation = (std::atan2(-deltaX, deltaY) * 180.000) / 3.141592;
 }
 
-void Player::player_attack()
+void Player::player_attack(std::vector<Bullet>& bullets)
 {
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) this->player_color = WHITE;
-    if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) this->player_color = RED;
+    if(fire_timer > 0.0f) return;
+
+    Bullet b;
+    b.pos = { player_rect.x, player_rect.y };
+
+    Vector2 mouse = GetMousePosition();
+    Vector2 dir = Vector2Normalize({
+        mouse.x - b.pos.x,
+        mouse.y - b.pos.y
+    });
+
+    b.vel = { dir.x * b.speed, dir.y * b.speed };
+    bullets.push_back(b);
+
 }
 
 int Player::get_player_speed(){ return this->player_speed;}

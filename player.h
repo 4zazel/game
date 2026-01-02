@@ -1,7 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "bullet.h"
 #include "raylib.h"
+#include <vector>
 
 class Player{
   private:
@@ -17,14 +19,16 @@ class Player{
     int deltaY{ 0 };
     int p_rotation{ 0 };
     bool alive{ true };
-    float inv_time{ 1 };
+    float inv_time{ 0.5f };
+    float fire_rate{ 0.2f };
+    float fire_timer{ 0.0f };
 
     Player();
     Player(int speed, int damage, int health);
 
     void player_movement();
     void player_rotation();
-    void player_attack();
+    void player_attack(std::vector<Bullet>& bullets);
 
     int get_player_speed();
     int get_player_damage();
