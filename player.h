@@ -17,13 +17,14 @@ class Player{
     int deltaY{ 0 };
     int p_rotation{ 0 };
     bool alive{ true };
+    float inv_time{ 1 };
 
     Player();
     Player(int speed, int damage, int health);
 
     void player_movement();
     void player_rotation();
-    void player_shoot();
+    void player_attack();
 
     int get_player_speed();
     int get_player_damage();

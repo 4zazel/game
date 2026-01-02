@@ -1,4 +1,5 @@
 #include "player.h"
+#include "raylib.h"
 #include <cmath>
 #include <iostream>
 
@@ -30,7 +31,7 @@ void Player::player_rotation()
     p_rotation = (std::atan2(-deltaX, deltaY) * 180.000) / 3.141592;
 }
 
-void Player::player_shoot()
+void Player::player_attack()
 {
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) this->player_color = WHITE;
     if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) this->player_color = RED;

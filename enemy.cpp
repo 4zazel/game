@@ -18,10 +18,18 @@ Enemy::Enemy(int speed, int damage, int health)
 
 void Enemy::enemy_movement(Player player)
 {
-  if(this->enemy_rect.x < player.player_rect.x) this->enemy_rect.x += enemy_speed;
-  if(this->enemy_rect.x > player.player_rect.x) this->enemy_rect.x -= enemy_speed;
-  if(this->enemy_rect.y < player.player_rect.y) this->enemy_rect.y += enemy_speed;
-  if(this->enemy_rect.y > player.player_rect.y) this->enemy_rect.y -= enemy_speed;
+  float dx = player.player_rect.x - this->enemy_rect.x;
+  float dy = player.player_rect.y - this->enemy_rect.y;
+
+  float length = sqrt(dx * dx + dy * dy);
+
+  if(length != 0) {
+    dx /= length;
+    dy /= length;
+  }
+
+  this->enemy_rect.x += dx * enemy_speed;
+  this->enemy_rect.y += dy * enemy_speed;
 }
 
 void Enemy::enemy_rotation(Player player)
@@ -30,10 +38,6 @@ void Enemy::enemy_rotation(Player player)
     this->deltaY = player.player_rect.y - this->enemy_rect.y; 
 
     e_rotation = (std::atan2(-deltaX, deltaY) * 180.000) / 3.141592;
-}
-
-void Enemy::enemy_shoot()
-{
 }
 
 int Enemy::get_enemy_speed(){ return this->enemy_speed;}
